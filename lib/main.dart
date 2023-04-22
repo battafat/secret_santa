@@ -1,4 +1,5 @@
-import 'package:english_words/english_words.dart';
+// my_remote_name
+// import 'package:english_words/english_words.dart';
 // flutter/material.dart is the flutter framework? 
 // and necessary to run flutter?
 import 'package:flutter/material.dart';
@@ -32,28 +33,24 @@ class MyAppState extends ChangeNotifier {
   // var current = WordPair.random();
   // var namesList = ['Nicholas', 'Timothy', 'Bethany', 'Bridget', 'Hannah', 'Benjamin', 'Malia'];
   var namesList = <String> [];
-  // var firstName = namesList.elementAt(0);
 
-  // var name = namesList.elementAt(-1);
-
-  // getName() {
-  //   var name = namesList.elementAt(-1);
-  //   notifyListeners();
-  // } 
 
   getName(name) {
     namesList.add(name);
   }
-
-  // var currentName = getName();  
-
-  // figure out how to write this in Flutter syntax
-  //void matchNames() {
-  // for name in current_list:
-      // match that name with a random name from
-      // current_list
-  // }
 }
+
+// class AssignNames extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     var appState = context.watch<MyAppState>();
+//     for (name in appState.namesList) {
+      
+//     }
+//   } 
+// }
+
+
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -203,7 +200,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
           );
         },
         tooltip: 'Show me the value!',
-        child: const Icon(Icons.text_fields),
+        // child: const Icon(Icons.text_fields),
+        child: Text('Finalize List')
       ),
     );
   }
