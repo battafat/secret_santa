@@ -167,45 +167,84 @@ class _MyCustomFormState extends State<MyCustomForm> {
     super.dispose();
   }
 
+  bool _pinned = true;
+  bool _snap = true;
+  bool _floating = true;
+
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     final myController = TextEditingController();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Enter names, one by one'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: TextField(
-          controller: myController,
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        // When the user presses the button, show an alert dialog containing
-        // the text that the user has entered into the text field.
-        onPressed: () {
-          appState.getName(myController.text);
-          showDialog(
-            context: context,
-            builder: (context) {
-              // appState.getName();
-              return AlertDialog(
-                // Retrieve the text the that user has entered by using the
-                // TextEditingController.
-                // appState.getName(myController.text);
-                content: Text(myController.text),
-              );
-            },
-          );
-        },
-        tooltip: 'Show me the value!',
-        // child: const Icon(Icons.text_fields),
-        child: Text('Finalize List')
-      ),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            pinned: _pinned,
+            snap: _snap,
+            floating: _floating,
+            expandedHeight: 160.0,
+            flexibleSpace: const FlexibleSpaceBar(
+              title: Text('Enter your Santas'), 
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 20,
+              child: Center(
+                child: Text('Scroll to see your list of santas'),
+              ),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return Container(
+                  color: index.isOdd ? Colors.red : Colors.green,
+                  height: 100.0,
+                  child: Center(
+                    child: Text(myController.text, textScaleFactor: 5),
+                  ),
+                );
+              },
+              childCount: 20,
+            ),
+          ),
+        ],
+      )
     );
-  }
+  }  
 }
+//       body: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: TextField(
+//           controller: myController,
+//         ),
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         // When the user presses the button, show an alert dialog containing
+//         // the text that the user has entered into the text field.
+//         onPressed: () {
+//           appState.getName(myController.text);
+//           showDialog(
+//             context: context,
+//             builder: (context) {
+//               // appState.getName();
+//               return AlertDialog(
+//                 // Retrieve the text the that user has entered by using the
+//                 // TextEditingController.
+//                 // appState.getName(myController.text);
+//                 content: Text(myController.text),
+//               );
+//             },
+//           );
+//         },
+//         tooltip: 'Show me the value!',
+//         // child: const Icon(Icons.text_fields),
+//         child: Text('Finalize List')
+//       ),
+//     );
+//   }
+// }
 
 // class MatchNames extends StatelessWidget {
 //   @override
