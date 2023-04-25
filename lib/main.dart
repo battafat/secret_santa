@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
 class MyAppState extends ChangeNotifier {
   // var current = WordPair.random();
   // var namesList = ['Nicholas', 'Timothy', 'Bethany', 'Bridget', 'Hannah', 'Benjamin', 'Malia'];
-  var namesList = <String> [];
+  var namesList = <String> [""];
 
 
   getName(name) {
@@ -150,6 +150,7 @@ class MyCustomForm extends StatefulWidget {
   
   @override
   State<MyCustomForm> createState() => _MyCustomFormState();
+  
 }
   
 // Define a corresponding State class.
@@ -176,17 +177,74 @@ class _MyCustomFormState extends State<MyCustomForm> {
     var appState = context.watch<MyAppState>();
     final myController = TextEditingController();
     return Scaffold(
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverAppBar(
-            pinned: _pinned,
-            snap: _snap,
-            floating: _floating,
-            expandedHeight: 160.0,
-            flexibleSpace: const FlexibleSpaceBar(
-              title: Text('Enter your Santas'), 
+          Expanded(
+            child: SliverAppBar(
+              pinned: _pinned,
+              snap: _snap,
+              floating: _floating,
+              expandedHeight: 160.0,
+          
+              // removed const from before FlexibleSpaceBar.
+              // Not sure if I should have?
+              // Seemed necessary to add container?
+              flexibleSpace: FlexibleSpaceBar(
+                // title: Text('Enter your Santas'), 
+                // background: Container(
+                  
+                // ),
+                // child: Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                title: Expanded(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          // height: 100,
+                          // width: 100,
+                          // selectionWidthStyle: , 
+                          textAlignVertical: TextAlignVertical.bottom,
+                          textAlign: TextAlign.center,
+                          controller: myController,
+                          style: TextStyle(color: Colors.green),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: null, 
+                        child: const Text('Enter')
+                      )
+                    ],
+                  ),
+          
+                  
+                    // child: FloatingActionButton(
+                    //   // mini: true,
+                    //   onPressed: () {
+                    //   appState.getName(myController.text);
+                    //   },           
+                    // ),
+                ),
+          
+                background: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.red,
+                      width: 5.0,
+                    ),
+                    gradient: LinearGradient(
+                      colors: [Colors.yellow, Color.fromARGB(255, 7, 6, 4)],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                ),
+              ), 
             ),
           ),
+
           const SliverToBoxAdapter(
             child: SizedBox(
               height: 20,
@@ -195,18 +253,23 @@ class _MyCustomFormState extends State<MyCustomForm> {
               ),
             ),
           ),
+          // This is what I want to happen.
+          // Not sure where or how to write it.
+          //if namesList.length() = 0,
+          //   continue
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Container(
                   color: index.isOdd ? Colors.red : Colors.green,
                   height: 100.0,
+                  width: double.infinity,
                   child: Center(
-                    child: Text(myController.text, textScaleFactor: 5),
+                    child: Text(appState.namesList.elementAt(index), textScaleFactor: 5),
                   ),
                 );
               },
-              childCount: 20,
+              childCount: appState.namesList.length,
             ),
           ),
         ],
