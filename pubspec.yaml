@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flash_card: ^0.0.5
 
   english_words: ^4.0.0
   provider: ^6.0.0
