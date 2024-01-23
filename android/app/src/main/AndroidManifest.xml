@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.secret_santa">
+    <!-- added this line as per: https://pub.dev/packages/flutter_sms
+    for sending direct text messages -->
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    
    <application
         android:label="secret_santa"
         android:name="${applicationName}"
