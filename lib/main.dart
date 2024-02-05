@@ -26,7 +26,13 @@ class _State extends State<MyApp> {
     //       print(onError);
     //     });
     // print(result);
-    }
+  void _sendSMS(String message, List<String> recipents) async {
+    String _result = await sendSMS(message: message, recipients: recipents)
+        .catchError((onError) {
+        return 'sendSMS error';
+    });
+    print(_result);
+  }
 
   void addItemToList(){
     setState(() {

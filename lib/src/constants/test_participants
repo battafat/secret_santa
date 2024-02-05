@@ -1,0 +1,10 @@
+import 'package:secret_santa/lib/src/features/participants/domain/participant.dart';
+/// Test participants to be used until a data source is implemented
+const TestParticipants = [
+    Participant(
+        id: '1',
+        imageUrl, 'assets/products/bruschetta-plate.jpg',
+        name: 'Anya',
+        phoneNumber: '1234567899',
+  ),
+];
