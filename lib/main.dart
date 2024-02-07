@@ -18,14 +18,7 @@ class _State extends State<MyApp> {
   final List<String> names = <String>[];
 
   TextEditingController nameController = TextEditingController();
-// function for sending sms messages
-// from: https://pub.dev/packages/flutter_sms
-  // void _sendSMS(String message, List<String> recipents) async {
-  //   String result = await sendSMS(message: message, recipients: recipents)
-    //         .catchError((onError) {
-    //       print(onError);
-    //     });
-    // print(result);
+
   void _sendSMS(String message, List<String> recipents) async {
     String _result = await sendSMS(message: message, recipients: recipents)
         .catchError((onError) {
@@ -40,42 +33,68 @@ class _State extends State<MyApp> {
     });
   }
 
-  void deleteItemFromList(){
+  void deleteItemFromList(int index){
     setState(() {
-      names.removeAt(0);   
+      if (names.isNotEmpty) {
+      names.removeAt(index);
+      }
     }); 
   }
 
-  // @override
-  // void dispose() {
-  //   // Clean up the controller when the widget is disposed.
-  //   nameController.dispose();
-  //   super.dispose();
-  // }
+
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    nameController.dispose();
+    super.dispose();
+  }
+  void clearText() {
+    nameController.clear();
+  }
 
   void pairNamesRandom(){
     setState((){
     
     });
   }
+  // ReoderableListView.builder stuff:
+  final List<int> _items = List<int>.generate(50, (int index) => index);
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
+    final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('Secret Santa App'),
       ),
-      body: Column(
+      body: Center(
+        child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Padding(
             padding: EdgeInsets.all(20),
-            child: TextField(
-              controller: nameController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Santa Names',
+              child: Card(
+                child: AnimatedSize(
+                  alignment: Alignment.center,
+                  duration: Duration(milliseconds: 200),
+                  child: Center(
+                    child: TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Santa Names',
+                      ),
+                      minLines: 1,
+                      maxLines: null,
+                      // expands: true,
+                    ),
+                  ),
+                ),
               ),
-            ),
           ),
           ButtonBar(
             children: [
@@ -83,36 +102,50 @@ class _State extends State<MyApp> {
                 child: Text('Add'),
                 onPressed: () {
                   addItemToList();
-                  var nameController = "";
-                  // dispose();
+                  clearText();
+                  // var nameController = "";
                 },
               ),
-              ElevatedButton(
-                child: Text('Delete'),
-                onPressed: () {
-                  deleteItemFromList();
-                },
-              ),
+              // ElevatedButton(
+              //   child: Text('Delete'),
+              //   onPressed: () {
+              //     deleteItemFromList(0);
+              //     // TODO: define index so that it can be the parameter
+              //   },
+              // ),
             ]  
           ),    
         
     
           Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: names.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: 50,
-                  margin: EdgeInsets.all(2),
-                  child: Center(
-                    child: 
-                      Text(names[index]),
-                      // TextStyle(fontSize: 18),
-                  ),
-                );
-              }
-            )
+            flex: 1,
+            child: names.isEmpty ? Center(child: Text('Empty')) :ReorderableListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                itemCount: names.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    key: Key('$index'),
+                    tileColor: index.isOdd ? oddItemColor : evenItemColor,
+                    title: Text(names[index]),
+                    trailing: IconButton(
+                      iconSize: 33,
+                      icon: const Icon(Icons.delete),
+                      onPressed: () {
+                        deleteItemFromList(index);
+                      },
+                    ),
+                  );
+                },
+                onReorder: (int oldIndex, int newIndex) {
+                  setState(() {
+                    if (oldIndex < newIndex) {
+                      newIndex -= 1;
+                    }
+                    final int item = _items.removeAt(oldIndex);
+                    _items.insert(newIndex, item);
+                  });
+                },
+              )
           ),
           Align(
             alignment: Alignment.bottomRight,
@@ -136,6 +169,7 @@ class _State extends State<MyApp> {
             ),
           )
         ]  
+      )
       )
     );
     
