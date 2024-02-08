@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import "dart:math";
 import 'package:flash_card/flash_card.dart';
@@ -15,7 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _State extends State<MyApp> {
-  final List<String> names = <String>[];
+  final List<String> names = [];
 
   TextEditingController nameController = TextEditingController();
 
@@ -59,10 +61,10 @@ class _State extends State<MyApp> {
     });
   }
   // ReoderableListView.builder stuff:
-  final List<int> _items = List<int>.generate(50, (int index) => index);
-
+  // late final List<int> _items = List<int>.generate(names.length, (int index) => index);
   @override
   Widget build(BuildContext context) {
+    // print(_items);
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
     final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
@@ -83,14 +85,14 @@ class _State extends State<MyApp> {
                   duration: Duration(milliseconds: 200),
                   child: Center(
                     child: TextField(
+                      textAlign: TextAlign.center,
                       controller: nameController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Santa Names',
+                        labelText: 'Enter a gift',
                       ),
                       minLines: 1,
                       maxLines: null,
-                      // expands: true,
                     ),
                   ),
                 ),
@@ -103,30 +105,26 @@ class _State extends State<MyApp> {
                 onPressed: () {
                   addItemToList();
                   clearText();
-                  // var nameController = "";
                 },
               ),
-              // ElevatedButton(
-              //   child: Text('Delete'),
-              //   onPressed: () {
-              //     deleteItemFromList(0);
-              //     // TODO: define index so that it can be the parameter
-              //   },
-              // ),
             ]  
           ),    
-        
     
           Expanded(
             flex: 1,
-            child: names.isEmpty ? Center(child: Text('Empty')) :ReorderableListView.builder(
+            child: names.isEmpty ? Center(child: Text('Add Items to Your Wishlist!')) :ReorderableListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 itemCount: names.length,
+                prototypeItem: ListTile(
+                  title: Text(names.first),
+                ),
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
                     key: Key('$index'),
                     tileColor: index.isOdd ? oddItemColor : evenItemColor,
-                    title: Text(names[index]),
+                    title: Text(
+                      textAlign: TextAlign.center,
+                      names[index]),
                     trailing: IconButton(
                       iconSize: 33,
                       icon: const Icon(Icons.delete),
@@ -140,9 +138,10 @@ class _State extends State<MyApp> {
                   setState(() {
                     if (oldIndex < newIndex) {
                       newIndex -= 1;
+                      // what does newIndex start at?
                     }
-                    final int item = _items.removeAt(oldIndex);
-                    _items.insert(newIndex, item);
+                    final String item = names.removeAt(oldIndex);
+                    names.insert(newIndex, item);
                   });
                 },
               )
