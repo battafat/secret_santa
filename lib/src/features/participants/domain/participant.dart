@@ -9,7 +9,7 @@ class Participant {
     required this.phoneNumber,
     });
 
-  /// Unique product id
+  /// Unique participant id
   final ParticipantID id;
   final String imageUrl;
   final String name;
