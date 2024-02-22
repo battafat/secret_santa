@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sms/flutter_sms.dart';
+
 
 void main() {
   runApp(MaterialApp(
@@ -17,13 +17,7 @@ class _State extends State<MyApp> {
 
   TextEditingController nameController = TextEditingController();
 
-  void _sendSMS(String message, List<String> recipents) async {
-    String _result = await sendSMS(message: message, recipients: recipents)
-        .catchError((onError) {
-        return 'sendSMS error';
-    });
-    print(_result);
-  }
+
 
   void addItemToList(){
     setState(() {
