@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flash_card/flash_card.dart';
 import 'package:flutter_sms/flutter_sms.dart';
 
 void main() {
@@ -57,7 +56,7 @@ class _State extends State<MyApp> {
     
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
@@ -100,6 +99,7 @@ class _State extends State<MyApp> {
               ElevatedButton(
                 child: Text('Add'),
                 onPressed: () {
+                  
                   addItemToList();
                   clearText();
                 },
@@ -174,47 +174,5 @@ class _State extends State<MyApp> {
 
 
 
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({super.key});
 
-  
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Second Route'),
-      ),
-      body: Column(
-        children: [
-            FlashCard(
-              frontWidget: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  // textAlign: TextAlign.center,
-                  'front'
-                ),
-              ),
-              backWidget: Align(
-                alignment: Alignment.center,
-                child: Text(
-                'back'
-                ),
-              )
-            ),
-            Align(
-            alignment: Alignment.bottomLeft,
-            child: ElevatedButton(
-              onPressed: () {
-                // Navigate back to first route when tapped.
-                Navigator.pop(context);
-              },
-              child: const Text('Go back!'),
-            ),
-          ),  
-        ],
-      ),
-    );
-  }
-}
 
