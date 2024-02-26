@@ -6,17 +6,17 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   
   @override
   Widget build(BuildContext context) {
+    //TODO: decide whether it's worth it to convert participantsList to List<String>
     final participantsList = FakeParticipantsRepository.instance.getParticipantsList();
-    return ListWheelScrollView(
-      
-      itemExtent: 42,
-      children: [ListView.builder(
-        itemCount: participantsList.length,
-        itemBuilder: (context, index) {
-        return ListTile(title: Text('index: $index'));
-        }
-      )],
-      
+    return ListView.builder(
+      itemCount: participantsList.length,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) {
+      return ListTile(
+        key: Key('$index'),
+        title: Text(
+        participantsList[index].name));
+      }
     );
   }
 @override

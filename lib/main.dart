@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:secret_santa/src/constants/test_participants.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/home_app_bar.dart';
 
-
 void main() {
+  print(kTestParticipants);
   runApp(MaterialApp(
     home: MyApp(),
   ));
@@ -57,9 +58,10 @@ class _State extends State<MyApp> {
     final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
     
     return Scaffold(
-      appBar: HomeAppBar(
-        // title: Text('Secret Santa App'),
-      ),
+      appBar: 
+        HomeAppBar(
+          // title: Text('Secret Santa App'),
+        ),
       body: Center(
         child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -157,6 +159,7 @@ class _State extends State<MyApp> {
     
   }
 }
+
 
 
 
