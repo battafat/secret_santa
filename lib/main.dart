@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:secret_santa/src/features/wishlist/presentation/home_app_bar.dart';
 
 
 void main() {
@@ -33,8 +34,6 @@ class _State extends State<MyApp> {
     }); 
   }
 
-
-
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -58,8 +57,8 @@ class _State extends State<MyApp> {
     final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
     
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Secret Santa App'),
+      appBar: HomeAppBar(
+        // title: Text('Secret Santa App'),
       ),
       body: Center(
         child: Column(
@@ -93,16 +92,29 @@ class _State extends State<MyApp> {
               ElevatedButton(
                 child: Text('Add'),
                 onPressed: () {
-                  
+                  //can I use a ternary operator here?
+                  if (nameController.text.isEmpty) {
+                    //TODO: refactor with ternary operator
+                    //TODO: investigate: The return type 'AlertDialog' isn't a 'void', as required by the closure's context.
+                    AlertDialog(
+                      // TODO: add gift icon
+                      // TODO: refactor so that text pops up
+                      // TODO: add case where user only types spaces
+                      title: const Text('type a gift idea first'),
+                      content: const Text('add'),
+                    );
+                  } else {
                   addItemToList();
                   clearText();
+                  }
                 },
               ),
             ]  
           ),    
     
           Expanded(
-            flex: 1,
+            flex: 1, 
+            //TODO: adjust 'Add Items to Your Wishlist!' higher up on screen
             child: giftList.isEmpty ? Center(child: Text('Add Items to Your Wishlist!')) :ReorderableListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 itemCount: giftList.length,
@@ -110,6 +122,7 @@ class _State extends State<MyApp> {
                   title: Text(giftList.first),
                 ),
                 itemBuilder: (BuildContext context, int index) {
+                  //TODO: add editing functionality for list items
                   return ListTile(
                     key: Key('$index'),
                     tileColor: index.isOdd ? oddItemColor : evenItemColor,

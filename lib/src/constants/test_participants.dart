@@ -2,7 +2,7 @@ import "package:secret_santa/src/features/participants/domain/participant.dart";
 
 
 // Test participants to be used until a data source is implemented
-const kTestProducts = [
+const kTestParticipants = [
   Participant(
     id: '1',
     imageUrl: 'asd',
