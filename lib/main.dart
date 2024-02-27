@@ -58,14 +58,50 @@ class _State extends State<MyApp> {
     final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
     
     return Scaffold(
-      appBar: 
-        HomeAppBar(
-          // title: Text('Secret Santa App'),
-        ),
       body: Center(
-        child: Column(
+        child: 
+        
+        Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Expanded(
+          flex: 1,
+          //TODO: adjust 'Add Items to Your Wishlist!' higher up on screen
+          child: giftList.isEmpty
+              ? Center(child: Text('Add Items to Your Wishlist!'))
+              : ReorderableListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  itemCount: giftList.length,
+                  prototypeItem: ListTile(
+                    title: Text(giftList.first),
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    //TODO: add editing functionality for list items
+                    return ListTile(
+                      key: Key('$index'),
+                      tileColor: index.isOdd ? oddItemColor : evenItemColor,
+                      title: Text(
+                          textAlign: TextAlign.center, giftList[index]),
+                      trailing: IconButton(
+                        iconSize: 33,
+                        icon: const Icon(Icons.delete),
+                        onPressed: () {
+                          deleteItemFromList(index);
+                        },
+                      ),
+                    );
+                  },
+                  onReorder: (int oldIndex, int newIndex) {
+                    setState(() {
+                      if (oldIndex < newIndex) {
+                        newIndex -= 1;
+                        // what does newIndex start at?
+                      }
+                      final String item = giftList.removeAt(oldIndex);
+                      giftList.insert(newIndex, item);
+                    });
+                  },
+                )),
           Padding(
             padding: EdgeInsets.all(20),
               child: Card(
@@ -114,44 +150,7 @@ class _State extends State<MyApp> {
             ]  
           ),    
     
-          Expanded(
-            flex: 1, 
-            //TODO: adjust 'Add Items to Your Wishlist!' higher up on screen
-            child: giftList.isEmpty ? Center(child: Text('Add Items to Your Wishlist!')) :ReorderableListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                itemCount: giftList.length,
-                prototypeItem: ListTile(
-                  title: Text(giftList.first),
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  //TODO: add editing functionality for list items
-                  return ListTile(
-                    key: Key('$index'),
-                    tileColor: index.isOdd ? oddItemColor : evenItemColor,
-                    title: Text(
-                      textAlign: TextAlign.center,
-                      giftList[index]),
-                    trailing: IconButton(
-                      iconSize: 33,
-                      icon: const Icon(Icons.delete),
-                      onPressed: () {
-                        deleteItemFromList(index);
-                      },
-                    ),
-                  );
-                },
-                onReorder: (int oldIndex, int newIndex) {
-                  setState(() {
-                    if (oldIndex < newIndex) {
-                      newIndex -= 1;
-                      // what does newIndex start at?
-                    }
-                    final String item = giftList.removeAt(oldIndex);
-                    giftList.insert(newIndex, item);
-                  });
-                },
-              )
-          ),
+          
         ]  
       )
       )
