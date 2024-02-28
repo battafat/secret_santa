@@ -58,18 +58,22 @@ class _State extends State<MyApp> {
     final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
     
     return Scaffold(
-      body: Center(
+      
+      body: 
+      Center(
         child: 
         
         Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          // HomeAppBar(),
           Expanded(
-          flex: 1,
+          flex: 8,
           //TODO: adjust 'Add Items to Your Wishlist!' higher up on screen
           child: giftList.isEmpty
               ? Center(child: Text('Add Items to Your Wishlist!'))
               : ReorderableListView.builder(
+                  reverse: true,
                   padding: const EdgeInsets.symmetric(horizontal: 40),
                   itemCount: giftList.length,
                   prototypeItem: ListTile(
@@ -104,9 +108,10 @@ class _State extends State<MyApp> {
                 )),
           Row(
             children: [
-              Padding(
-                padding: EdgeInsets.all(20),
-                  child: Center(
+              Flexible(
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsets.all(20),
                     child: TextField(
                       textAlign: TextAlign.center,
                       controller: nameController,
@@ -117,34 +122,35 @@ class _State extends State<MyApp> {
                         floatingLabelAlignment: FloatingLabelAlignment.center,
                         border: OutlineInputBorder(),
                         hintText: 'Enter a gift',
-                        suffixIcon: Align(
-                          child: ElevatedButton(
-                            child: Text('Add'),
-                            onPressed: () {
-                              //can I use a ternary operator here?
-                              if (nameController.text.isEmpty) {
-                                //TODO: refactor with ternary operator
-                                //TODO: investigate: The return type 'AlertDialog' isn't a 'void', as required by the closure's context.
-                                AlertDialog(
-                                  // TODO: add gift icon
-                                  // TODO: refactor so that text pops up
-                                  // TODO: add case where user only types spaces
-                                  title:
-                                      const Text('type a gift idea first'),
-                                  content: const Text('add'),
-                                );
-                              } else {
-                                addItemToList();
-                                clearText();
-                              }
-                            },
-                          ),
-                        ),
                       ),
-                      
                     ),
-                  ),
+                      
+                ),
               ),
+              
+                        
+              TextButton(
+                child: Text('ENTER'),
+                onPressed: () {
+                  //can I use a ternary operator here?
+                  if (nameController.text.isEmpty) {
+                    //TODO: refactor with ternary operator
+                    //TODO: investigate: The return type 'AlertDialog' isn't a 'void', as required by the closure's context.
+                    AlertDialog(
+                      // TODO: add gift icon
+                      // TODO: refactor so that text pops up
+                      // TODO: add case where user only types spaces
+                      title:
+                          const Text('type a gift idea first'),
+                      content: const Text('Add'),
+                    );
+                  } else {
+                    addItemToList();
+                    clearText();
+                  }
+                },
+              ),
+                          
             ],
           ),
         ]  
