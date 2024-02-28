@@ -106,44 +106,42 @@ class _State extends State<MyApp> {
             children: [
               Padding(
                 padding: EdgeInsets.all(20),
-                  child: Card(
-                    child: Center(
-                      child: TextField(
-                        textAlign: TextAlign.center,
-                        controller: nameController,
-                        minLines: 1,
-                        maxLines: null,
-                        decoration: InputDecoration(
-                          alignLabelWithHint: true,
-                          floatingLabelAlignment: FloatingLabelAlignment.center,
-                          border: OutlineInputBorder(),
-                          hintText: 'Enter a gift',
-                          suffixIcon: Align(
-                            child: ElevatedButton(
-                              child: Text('Add'),
-                              onPressed: () {
-                                //can I use a ternary operator here?
-                                if (nameController.text.isEmpty) {
-                                  //TODO: refactor with ternary operator
-                                  //TODO: investigate: The return type 'AlertDialog' isn't a 'void', as required by the closure's context.
-                                  AlertDialog(
-                                    // TODO: add gift icon
-                                    // TODO: refactor so that text pops up
-                                    // TODO: add case where user only types spaces
-                                    title:
-                                        const Text('type a gift idea first'),
-                                    content: const Text('add'),
-                                  );
-                                } else {
-                                  addItemToList();
-                                  clearText();
-                                }
-                              },
-                            ),
+                  child: Center(
+                    child: TextField(
+                      textAlign: TextAlign.center,
+                      controller: nameController,
+                      minLines: 1,
+                      maxLines: null,
+                      decoration: InputDecoration(
+                        alignLabelWithHint: true,
+                        floatingLabelAlignment: FloatingLabelAlignment.center,
+                        border: OutlineInputBorder(),
+                        hintText: 'Enter a gift',
+                        suffixIcon: Align(
+                          child: ElevatedButton(
+                            child: Text('Add'),
+                            onPressed: () {
+                              //can I use a ternary operator here?
+                              if (nameController.text.isEmpty) {
+                                //TODO: refactor with ternary operator
+                                //TODO: investigate: The return type 'AlertDialog' isn't a 'void', as required by the closure's context.
+                                AlertDialog(
+                                  // TODO: add gift icon
+                                  // TODO: refactor so that text pops up
+                                  // TODO: add case where user only types spaces
+                                  title:
+                                      const Text('type a gift idea first'),
+                                  content: const Text('add'),
+                                );
+                              } else {
+                                addItemToList();
+                                clearText();
+                              }
+                            },
                           ),
                         ),
-                        
                       ),
+                      
                     ),
                   ),
               ),
