@@ -66,13 +66,13 @@ class _State extends State<MyApp> {
         Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Flexible(
-          flex: 1,
-          child: HomeAppBar()),
+          Expanded(
+            flex: 1,
+            child: HomeAppBar()),
           Expanded(
           flex: 8,
-          //TODO: adjust 'Add Items to Your Wishlist!' higher up on screen
           child: giftList.isEmpty
+              // TODO: Center the Text('Add Item to your Wishlist!') with TextField and HomeAppBar
               ? Center(child: Text('Add Items to Your Wishlist!'))
               : ReorderableListView.builder(
                   reverse: true,
