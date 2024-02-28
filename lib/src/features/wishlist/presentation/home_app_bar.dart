@@ -8,18 +8,21 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     //TODO: decide whether it's worth it to convert participantsList to List<String>
     final participantsList = FakeParticipantsRepository.instance.getParticipantsList();
-    return SizedBox(
-      width: 300,
-      height: 300,
+    return Flexible(
+      flex: 1,
       child: ListView.builder(
           // itemExtent: 3.0,
           itemCount: participantsList.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-          return ListTile(
-            key: Key('$index'),
-            title: Text(
-            participantsList[index].name));
+          return Container(
+            width: 150,
+            height: 150,
+            child: ListTile(
+              key: Key('$index'),
+              title: Text(
+              participantsList[index].name)),
+          );
           }
         ),
     );

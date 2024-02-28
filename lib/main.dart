@@ -66,7 +66,9 @@ class _State extends State<MyApp> {
         Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          // HomeAppBar(),
+          Flexible(
+          flex: 1,
+          child: HomeAppBar()),
           Expanded(
           flex: 8,
           //TODO: adjust 'Add Items to Your Wishlist!' higher up on screen
