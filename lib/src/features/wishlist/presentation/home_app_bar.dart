@@ -10,12 +10,12 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     //TODO: decide whether it's worth it to convert participantsList to List<String>
     final participantsList = FakeParticipantsRepository.instance.getParticipantsList();
     return ListView.builder(
+    //TODO: shrinkWrap expensive: is there a workaround?
         shrinkWrap: true,
         itemCount: participantsList.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
         return Container(
-          color: Colors.green,
           padding: EdgeInsets.all(8.0),
           width: 150,
           height: 150,

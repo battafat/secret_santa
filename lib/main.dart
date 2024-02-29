@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:secret_santa/src/constants/test_participants.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/home_app_bar.dart';
+import 'package:secret_santa/src/features/wishlist/presentation/wishlistTextBar.dart';
 
 void main() {
   print(kTestParticipants);
@@ -15,7 +16,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _State extends State<MyApp> {
-  final List<String> giftList = [];
+  final List<String> wishList = [];
 
   TextEditingController nameController = TextEditingController();
 
@@ -23,14 +24,14 @@ class _State extends State<MyApp> {
 
   void addItemToList(){
     setState(() {
-      giftList.insert(0,nameController.text);
+      wishList.insert(0,nameController.text);
     });
   }
 
   void deleteItemFromList(int index){
     setState(() {
-      if (giftList.isNotEmpty) {
-      giftList.removeAt(index);
+      if (wishList.isNotEmpty) {
+      wishList.removeAt(index);
       }
     }); 
   }
@@ -45,11 +46,6 @@ class _State extends State<MyApp> {
     nameController.clear();
   }
 
-  void pairgiftListRandom(){
-    setState((){
-    
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,15 +67,15 @@ class _State extends State<MyApp> {
             child: HomeAppBar()),
           Expanded(
           flex: 8,
-          child: giftList.isEmpty
+          child: wishList.isEmpty
               // TODO: Center the Text('Add Item to your Wishlist!') with TextField and HomeAppBar
               ? Center(child: Text('Add Items to Your Wishlist!'))
               : ReorderableListView.builder(
                   reverse: true,
                   padding: const EdgeInsets.symmetric(horizontal: 40),
-                  itemCount: giftList.length,
+                  itemCount: wishList.length,
                   prototypeItem: ListTile(
-                    title: Text(giftList.first),
+                    title: Text(wishList.first),
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     //TODO: add editing functionality for list items
@@ -87,7 +83,7 @@ class _State extends State<MyApp> {
                       key: Key('$index'),
                       tileColor: index.isOdd ? oddItemColor : evenItemColor,
                       title: Text(
-                          textAlign: TextAlign.center, giftList[index]),
+                          textAlign: TextAlign.center, wishList[index]),
                       trailing: IconButton(
                         iconSize: 33,
                         icon: const Icon(Icons.delete),
@@ -103,58 +99,12 @@ class _State extends State<MyApp> {
                         newIndex -= 1;
                         // what does newIndex start at?
                       }
-                      final String item = giftList.removeAt(oldIndex);
-                      giftList.insert(newIndex, item);
+                      final String item = wishList.removeAt(oldIndex);
+                      wishList.insert(newIndex, item);
                     });
                   },
                 )),
-          Row(
-            children: [
-              Flexible(
-                flex: 1,
-                child: Padding(
-                  padding: EdgeInsets.all(20),
-                    child: TextField(
-                      textAlign: TextAlign.center,
-                      controller: nameController,
-                      minLines: 1,
-                      maxLines: null,
-                      decoration: InputDecoration(
-                        alignLabelWithHint: true,
-                        floatingLabelAlignment: FloatingLabelAlignment.center,
-                        border: OutlineInputBorder(),
-                        hintText: 'Enter a gift',
-                      ),
-                    ),
-                      
-                ),
-              ),
-              
-                        
-              TextButton(
-                child: Text('ENTER'),
-                onPressed: () {
-                  //can I use a ternary operator here?
-                  if (nameController.text.isEmpty) {
-                    //TODO: refactor with ternary operator
-                    //TODO: investigate: The return type 'AlertDialog' isn't a 'void', as required by the closure's context.
-                    AlertDialog(
-                      // TODO: add gift icon
-                      // TODO: refactor so that text pops up
-                      // TODO: add case where user only types spaces
-                      title:
-                          const Text('type a gift idea first'),
-                      content: const Text('Add'),
-                    );
-                  } else {
-                    addItemToList();
-                    clearText();
-                  }
-                },
-              ),
-                          
-            ],
-          ),
+          wishlistTextBar(),
         ]  
       )
       )
