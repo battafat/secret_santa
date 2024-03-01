@@ -20,14 +20,9 @@ class MyApp extends StatefulWidget {
 class _State extends State<MyApp> {
   final List<String> wishList = [];
 
-  TextEditingController nameController = TextEditingController();
-
-
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
-    final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
     
     return Scaffold(
       
@@ -44,7 +39,6 @@ class _State extends State<MyApp> {
           Expanded(
           flex: 8,
           child: wishList.isEmpty
-              // TODO: Center the Text('Add Item to your Wishlist!') with TextField and HomeAppBar
               ? Center(child: Text('Add Items to Your Wishlist!'))
               : WishlistList()),
           wishlistTextBar(),
