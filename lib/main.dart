@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:secret_santa/src/constants/test_participants.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:secret_santa/src/features/participants/data/fake_participants_repository.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/home_app_bar.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/wishlist_text_bar.dart.dart';
@@ -7,9 +7,10 @@ import 'package:secret_santa/src/features/wishlist/presentation/wishlist_list.da
 
 
 void main() {
-  runApp(MaterialApp(
-    home: MyApp(),
-  ));
+  runApp(ProviderScope(child: MyApp()));
+  // MaterialApp(
+  //   home: MyApp(),
+  // ));
 }
 
 class MyApp extends StatefulWidget {
