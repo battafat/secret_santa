@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class wishlistTextBar extends StatefulWidget {
+class WishlistTextBar extends StatefulWidget {
   @override
   State createState() => _State();
 }
 
-class _State extends State<wishlistTextBar> {
+class _State extends State<WishlistTextBar> {
   final List<String> wishList = [];
   TextEditingController nameController = TextEditingController();
     

@@ -16,4 +16,9 @@ class FakeParticipantsRepository {
   Participant? getParticipant(String id) {
     return _participants.firstWhere((participant) => participant.id == id);
   }
+
+  List<String> getWishesList(String id) {
+    final Participant? participantWishes = getParticipant(id);
+    return participantWishes!.wishes;
+  }
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:secret_santa/src/features/participants/data/fake_participants_repository.dart';
+import 'package:secret_santa/src/features/participants/domain/participant.dart';
+import 'package:secret_santa/src/features/wishlist/presentation/wishlist_text_bar.dart.dart';
 
 class WishlistList extends StatefulWidget {
   @override
@@ -6,21 +9,33 @@ class WishlistList extends StatefulWidget {
 }
 
 class _State extends State<WishlistList> {
-  final List<String> wishList = [];    
+  // final participantsList = FakeParticipantsRepository.instance.getParticipantsList();
+  // final List<String> unmodifiableWishList =
+  //     FakeParticipantsRepository.instance.getWishesList('2');
+  // List<String> wishList= [];
+  // List<String> addWishes(unmodifiableWishList) {
+  //   wishList.addAll(unmodifiableWishList);
+  //   return wishList;
+  // }
 
-  void deleteItemFromList(int index){
-    
+  List<String> _unmodifiableWishList =
+      FakeParticipantsRepository.instance.getWishesList('2');
+  // List<String>  wishList = List.from(unmodifiableWishList);
+  List<String> get wishList => _unmodifiableWishList.toList();
+
+  void deleteItemFromList(int index) {
     setState(() {
       if (wishList.isNotEmpty) {
-      wishList.removeAt(index);
+        wishList.removeAt(index);
       }
-    }); 
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
-    final Color evenItemColor = colorScheme.primary.withOpacity(0.15);              
+    final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
     return ReorderableListView.builder(
       reverse: true,
       padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -33,8 +48,7 @@ class _State extends State<WishlistList> {
         return ListTile(
           key: Key('$index'),
           tileColor: index.isOdd ? oddItemColor : evenItemColor,
-          title: Text(
-              textAlign: TextAlign.center, wishList[index]),
+          title: Text(textAlign: TextAlign.center, wishList[index]),
           trailing: IconButton(
             iconSize: 33,
             icon: const Icon(Icons.delete),
@@ -54,7 +68,6 @@ class _State extends State<WishlistList> {
           wishList.insert(newIndex, item);
         });
       },
-  
-      );
+    );
   }
 }

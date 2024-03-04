@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:secret_santa/src/constants/test_participants.dart';
+import 'package:secret_santa/src/features/participants/data/fake_participants_repository.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/home_app_bar.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/wishlist_text_bar.dart.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/wishlist_list.dart';
 
 
 void main() {
-  print(kTestParticipants);
   runApp(MaterialApp(
     home: MyApp(),
   ));
@@ -18,12 +18,29 @@ class MyApp extends StatefulWidget {
 }
 
 class _State extends State<MyApp> {
-  final List<String> wishList = [];
+  // List<String> wishList = FakeParticipantsRepository.instance.getWishesList('1');
+
+  List<String> _unmodifiableWishList =
+      FakeParticipantsRepository.instance.getWishesList('2');
+  // List<String>  wishList = List.from(unmodifiableWishList); 
+  List<String> get wishList => _unmodifiableWishList.toList();
+  // void makeWishlist (wishList) {
+  //   wishList; 
+  // }
+  
+  // makeWishlist () {
+  //   wishList = unmodifiableWishList.toList();
+  //   }
+  // List<String> addWishes(unmodifiableWishList) {
+    // wishList = unmodifiableWishList.toList();
+  //   return wishList;
+
+
 
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    
+    // addWishes(unmodifiableWishList);
     return Scaffold(
       
       body: 
@@ -41,7 +58,7 @@ class _State extends State<MyApp> {
           child: wishList.isEmpty
               ? Center(child: Text('Add Items to Your Wishlist!'))
               : WishlistList()),
-          wishlistTextBar(),
+          WishlistTextBar(),
         ]  
       )
       )

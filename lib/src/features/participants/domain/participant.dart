@@ -7,6 +7,7 @@ class Participant {
     required this.imageUrl,
     required this.name,
     required this.phoneNumber,
+    required this.wishes,
     });
 
   /// Unique participant id
@@ -14,4 +15,5 @@ class Participant {
   final String imageUrl;
   final String name;
   final String phoneNumber;
+  final List<String> wishes;
 }
