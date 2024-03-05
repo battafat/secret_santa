@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:secret_santa/src/features/participants/data/fake_participants_repository.dart';
 import 'package:secret_santa/src/features/participants/domain/participant.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/wishlist_text_bar.dart.dart';
 
-class WishlistList extends StatefulWidget {
-  @override
-  State createState() => _State();
-}
+class WishlistList extends ConsumerWidget {
 
-class _State extends State<WishlistList> {
-
-  List<String> _unmodifiableWishList =
+  List<String> unmodifiableWishList =
       FakeParticipantsRepository.instance.getWishesList('2');
   // List<String> get wishList => _unmodifiableWishList.toList();
 
-  final participantsRepositoryProvider;
+  final wishlist = FakeParticipantsRepository.instance;
+  
+  print(wishlist);
 
   void deleteItemFromList(int index) {
     setState(() {
