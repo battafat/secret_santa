@@ -8,9 +8,6 @@ import 'package:secret_santa/src/features/wishlist/presentation/wishlist_list.da
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
-  // MaterialApp(
-  //   home: MyApp(),
-  // ));
 }
 
 class MyApp extends StatefulWidget {

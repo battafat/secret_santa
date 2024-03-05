@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:secret_santa/src/constants/test_participants.dart';
 import 'package:secret_santa/src/features/participants/domain/participant.dart';
 
@@ -21,4 +22,8 @@ class FakeParticipantsRepository {
     final Participant? participantWishes = getParticipant(id);
     return participantWishes!.wishes;
   }
+
+  final participantsRepositoryProvider = Provider<FakeParticipantsRepository>((ref) {
+    return FakeParticipantsRepository.instance;
+  });
 }

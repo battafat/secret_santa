@@ -9,19 +9,12 @@ class WishlistList extends StatefulWidget {
 }
 
 class _State extends State<WishlistList> {
-  // final participantsList = FakeParticipantsRepository.instance.getParticipantsList();
-  // final List<String> unmodifiableWishList =
-  //     FakeParticipantsRepository.instance.getWishesList('2');
-  // List<String> wishList= [];
-  // List<String> addWishes(unmodifiableWishList) {
-  //   wishList.addAll(unmodifiableWishList);
-  //   return wishList;
-  // }
 
   List<String> _unmodifiableWishList =
       FakeParticipantsRepository.instance.getWishesList('2');
-  // List<String>  wishList = List.from(unmodifiableWishList);
-  List<String> get wishList => _unmodifiableWishList.toList();
+  // List<String> get wishList => _unmodifiableWishList.toList();
+
+  final participantsRepositoryProvider;
 
   void deleteItemFromList(int index) {
     setState(() {
