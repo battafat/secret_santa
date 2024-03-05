@@ -6,13 +6,7 @@ import 'package:secret_santa/src/features/wishlist/presentation/wishlist_text_ba
 
 class WishlistList extends ConsumerWidget {
 
-  List<String> unmodifiableWishList =
-      FakeParticipantsRepository.instance.getWishesList('2');
-  // List<String> get wishList => _unmodifiableWishList.toList();
-
-  final wishlist = FakeParticipantsRepository.instance;
   
-  print(wishlist);
 
   void deleteItemFromList(int index) {
     setState(() {
