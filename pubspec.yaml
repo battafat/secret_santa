@@ -20,11 +20,21 @@ dependencies:
   flutter_sms: ^2.3.3
   flash_card: ^0.0.5
   flutter_riverpod: ^2.4.10
+  riverpod_annotation: ^2.3.5
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: 3.0.1
+  
+  build_runner: ^2.4.8
+  # the code generator
+  riverpod_generator: ^2.4.0
+  # riverpod_lint makes it easier to work with Riverpod
+  riverpod_lint: ^2.3.10
+  # import custom_lint too as riverpod_lint depends on it
+  custom_lint: ^0.6.2
 
 # Custom app icon. For more info see: https://pub.dev/packages/flutter_launcher_icons
 flutter_icons:

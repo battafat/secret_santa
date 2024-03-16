@@ -4,9 +4,20 @@ import 'package:secret_santa/src/features/participants/data/fake_participants_re
 import 'package:secret_santa/src/features/participants/domain/participant.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/wishlist_text_bar.dart.dart';
 
-class WishlistList extends ConsumerWidget {
+class WishlistList extends ConsumerStatefulWidget {
+  const WishlistList({super.key});
 
-  
+  @override
+  WishlistListState createState() => WishlistListState();
+}
+
+class WishlistListState extends ConsumerState<WishlistList> {
+  @override
+  void initState() {
+    super.initState();
+    // "ref" can be used in all life-cycles of a StatefulWidget.
+   final wishes = ref.watch(participantsRepositoryProvider);
+  }
 
   void deleteItemFromList(int index) {
     setState(() {
@@ -17,7 +28,10 @@ class WishlistList extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final participantsRepository = ref.watch(participantsRepositoryProvider);
+    final wishList = participantsRepository.getWishesList;
+
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
     final Color evenItemColor = colorScheme.primary.withOpacity(0.15);

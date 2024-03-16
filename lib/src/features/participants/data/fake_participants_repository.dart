@@ -1,12 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:secret_santa/src/constants/test_participants.dart';
 import 'package:secret_santa/src/features/participants/domain/participant.dart';
 
 class FakeParticipantsRepository {
   //Private constructor
-  FakeParticipantsRepository._();
-  //singleton
-  static FakeParticipantsRepository instance = FakeParticipantsRepository._();
+  
   
   final List<Participant> _participants = kTestParticipants;
   
@@ -24,6 +23,20 @@ class FakeParticipantsRepository {
   }
 
   final participantsRepositoryProvider = Provider<FakeParticipantsRepository>((ref) {
-    return FakeParticipantsRepository.instance;
+    return FakeParticipantsRepository();
   });
+
+
+}
+
+@riverpod
+class Wishes extends FakeParticipantsRepository{
+  // @override //Do I not need this?
+  List<String> build() {
+    return [];
+  }
+
+  void addWish(String wish) {
+    state = [...state, wish];
+  }
 }
