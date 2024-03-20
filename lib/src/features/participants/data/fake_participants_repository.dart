@@ -29,12 +29,12 @@ class FakeParticipantsRepository {
 
 }
 
-@riverpod
-class Wishes extends FakeParticipantsRepository{
-  // @override //Do I not need this?
-  List<String> build() {
-    return [];
-  }
+
+class Wishes extends Notifier<List<String>> {
+  @override //Do I not need this?
+  List<String> build() => [
+        
+      ];
 
   void addWish(String wish) {
     state = [...state, wish];
