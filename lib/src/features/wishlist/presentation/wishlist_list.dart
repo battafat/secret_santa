@@ -16,17 +16,14 @@ class WishlistView extends ConsumerWidget{
   const WishlistView({super.key});
     // "ref" can be used in all life-cycles of a StatefulWidget.
   //  final wishes = ref.watch(participantsRepositoryProvider);
-   List<Wish> wishList = ref.watch(wishesProvider);
-  
 
-
-  
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // final participantsRepository = ref.watch(participantsRepositoryProvider);
     // final wishList = participantsRepository.getWishesList;
-    
+    List<Wish> wishList = ref.watch(wishesProvider);
+  
 
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
@@ -36,19 +33,19 @@ class WishlistView extends ConsumerWidget{
       padding: const EdgeInsets.symmetric(horizontal: 40),
       itemCount: wishList.length,
       prototypeItem: ListTile(
-        title: Text(wishList.first),
+        title: Text(wishList.first.description),
       ),
       itemBuilder: (BuildContext context, int index) {
         //TODO: add editing functionality for list items
         return ListTile(
           key: Key('$index'),
           tileColor: index.isOdd ? oddItemColor : evenItemColor,
-          title: Text(textAlign: TextAlign.center, wishList[index]),
+          title: Text(textAlign: TextAlign.center, wishList[index].description),
           trailing: IconButton(
             iconSize: 33,
             icon: const Icon(Icons.delete),
             onPressed: () {
-              deleteItemFromList(index);
+              WishesNotifier().removeWish(wishList[index].id);
             },
           ),
         );
