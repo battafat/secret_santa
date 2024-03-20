@@ -15,11 +15,13 @@ void main() {
 //   State createState() => _State();
 // }
 
-class _State extends State<MyApp> {
-  List<Wish> wishList = ref.watch(wishesProvider);
+class MyApp extends ConsumerWidget {
+  const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    List<Wish> wishList = ref.watch(wishesProvider);
+
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     
     return Scaffold(
