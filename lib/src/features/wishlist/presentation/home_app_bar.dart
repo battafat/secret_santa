@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:secret_santa/src/features/participants/data/fake_participants_repository.dart';
 
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
+class HomeAppBar extends ConsumerWidget implements PreferredSizeWidget {
   //TODO: either remove 'implements PreferredSizeWidget' or use it
   const HomeAppBar({super.key});
   
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     //TODO: decide whether it's worth it to convert participantsList to List<String>
-    final participantsList = FakeParticipantsRepository.instance.getParticipantsList();
+    final participantsList = ref.watch(participantsRepositoryProvider).getParticipantsList();
     return ListView.builder(
     //TODO: shrinkWrap is supposedly expensive: is there a workaround?
         shrinkWrap: true,

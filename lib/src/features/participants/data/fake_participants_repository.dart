@@ -22,13 +22,13 @@ class FakeParticipantsRepository {
     return participantWishes!.wishes;
   }
 
-  final participantsRepositoryProvider = Provider<FakeParticipantsRepository>((ref) {
-    return FakeParticipantsRepository();
-  });
 
 
 }
 
+  final participantsRepositoryProvider = Provider<FakeParticipantsRepository>((ref) {
+    return FakeParticipantsRepository();
+  });
 
 class Wishes extends Notifier<List<String>> {
   @override //Do I not need this?
