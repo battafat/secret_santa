@@ -7,23 +7,13 @@ class WishlistTextBar extends StatefulWidget {
 }
 
 class _State extends State<WishlistTextBar> {
-  // final List<String> wishList = [];
+
   List<String> _unmodifiableWishList =
       FakeParticipantsRepository.instance.getWishesList('2');
   List<String> get wishList => _unmodifiableWishList.toList();
-  // List<String> wishList;
-  // makeWishlist (wishList) {
-  // List<String> get wishList => _unmodifiableWishList.toList();
-  // return wishList;
-  // }
-  TextEditingController nameController = TextEditingController();
+ 
 
-  //  @override
-  // void initState() {
-    
-  //   ;
-  //   super.initState();
-  // }  
+  TextEditingController nameController = TextEditingController();
 
   void addItemToList() {
     setState(() {
