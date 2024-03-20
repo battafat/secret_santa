@@ -2,35 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:secret_santa/src/features/participants/data/fake_participants_repository.dart';
 import 'package:secret_santa/src/features/participants/domain/participant.dart';
+import 'package:secret_santa/src/features/wishlist/presentation/wish.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/wishlist_text_bar.dart.dart';
 
-class WishlistList extends ConsumerStatefulWidget {
-  const WishlistList({super.key});
+// class WishlistList extends ConsumerStatefulWidget {
+//   const WishlistList({super.key});
 
-  @override
-  WishlistListState createState() => WishlistListState();
-}
+//   @override
+//   WishlistListState createState() => WishlistListState();
+// }
 
-class WishlistListState extends ConsumerState<WishlistList> {
-  @override
-  void initState() {
-    super.initState();
+class WishlistView extends ConsumerWidget{
+  const WishlistView({super.key});
     // "ref" can be used in all life-cycles of a StatefulWidget.
-   final wishes = ref.watch(participantsRepositoryProvider);
-  }
+  //  final wishes = ref.watch(participantsRepositoryProvider);
+   List<Wish> wishList = ref.watch(wishesProvider);
+  
 
-  void deleteItemFromList(int index) {
-    setState(() {
-      if (wishList.isNotEmpty) {
-        wishList.removeAt(index);
-      }
-    });
-  }
+
+  
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final participantsRepository = ref.watch(participantsRepositoryProvider);
-    final wishList = participantsRepository.getWishesList;
+    // final participantsRepository = ref.watch(participantsRepositoryProvider);
+    // final wishList = participantsRepository.getWishesList;
+    
 
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
