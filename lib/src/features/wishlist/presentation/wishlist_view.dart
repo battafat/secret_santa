@@ -5,23 +5,15 @@ import 'package:secret_santa/src/features/participants/domain/participant.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/wish.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/wishlist_text_bar.dart.dart';
 
-// class WishlistList extends ConsumerStatefulWidget {
-//   const WishlistList({super.key});
 
-//   @override
-//   WishlistListState createState() => WishlistListState();
-// }
 
 class WishlistView extends ConsumerWidget{
   const WishlistView({super.key});
-    // "ref" can be used in all life-cycles of a StatefulWidget.
-  //  final wishes = ref.watch(participantsRepositoryProvider);
-
+ 
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final participantsRepository = ref.watch(participantsRepositoryProvider);
-    // final wishList = participantsRepository.getWishesList;
+   
     List<Wish> wishList = ref.watch(wishesProvider);
   
 

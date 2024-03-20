@@ -10,10 +10,10 @@ void main() {
   runApp(ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  State createState() => _State();
-}
+// class MyApp extends StatefulWidget {
+//   @override
+//   State createState() => _State();
+// }
 
 class _State extends State<MyApp> {
   List<Wish> wishList = ref.watch(wishesProvider);
@@ -21,7 +21,7 @@ class _State extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    // addWishes(unmodifiableWishList);
+    
     return Scaffold(
         body: Center(
             child: Column(
