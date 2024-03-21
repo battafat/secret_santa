@@ -35,7 +35,7 @@ class MyApp extends ConsumerWidget {
               child: wishList.isEmpty
                   ? Center(child: Text('Add Items to Your Wishlist!'))
                   : WishlistView()),
-          WishlistTextBar(),
+          // WishlistTextBar(),
         ])));
   }
 }

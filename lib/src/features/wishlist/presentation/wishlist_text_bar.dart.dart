@@ -1,33 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:secret_santa/src/features/participants/data/fake_participants_repository.dart';
+import 'package:secret_santa/src/features/wishlist/presentation/wish.dart';
 
-class WishlistTextBar extends StatefulWidget {
-  @override
-  State createState() => _State();
-}
-
-class _State extends State<WishlistTextBar> {
-
-  List<String> _unmodifiableWishList =
-      FakeParticipantsRepository.instance.getWishesList('2');
-  List<String> get wishList => _unmodifiableWishList.toList();
+class WishlistTextBar extends ConsumerWidget {
+  const WishlistTextBar({super.key});
+  // List<String> _unmodifiableWishList =
+  //     FakeParticipantsRepository.instance.getWishesList('2');
+  // List<String> get wishList => _unmodifiableWishList.toList();
  
 
-  TextEditingController nameController = TextEditingController();
+  
 
-  void addItemToList() {
-    setState(() {
-      wishList.insert(0, nameController.text);
-    });
-  }
+  // void addItemToList() {
+  //   setState(() {
+  //     wishList.insert(0, nameController.text);
+  //   });
+  // }
 
-  void deleteItemFromList(int index) {
-    setState(() {
-      if (wishList.isNotEmpty) {
-        wishList.removeAt(index);
-      }
-    });
-  }
+  // void deleteItemFromList(int index) {
+  //   setState(() {
+  //     if (wishList.isNotEmpty) {
+  //       wishList.removeAt(index);
+  //     }
+  //   });
+  // }
 
   @override
   void dispose() {
@@ -41,7 +38,8 @@ class _State extends State<WishlistTextBar> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    TextEditingController nameController = TextEditingController();
     return Row(
       children: [
         Flexible(
@@ -77,7 +75,8 @@ class _State extends State<WishlistTextBar> {
                 content: const Text('Add'),
               );
             } else {
-              addItemToList();
+              // addItemToList();
+              ref.read(wishesProvider.notifier).addWish(nameController.text);
               clearText();
             }
           },
