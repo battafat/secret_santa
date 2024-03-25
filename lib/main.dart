@@ -21,21 +21,23 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     List<Wish> wishList = ref.watch(wishesProvider);
-
+  
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     
-    return Scaffold(
-        body: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-          Expanded(flex: 1, child: HomeAppBar()),
-          Expanded(
-              flex: 8,
-              child: wishList.isEmpty
-                  ? Center(child: Text('Add Items to Your Wishlist!'))
-                  : WishlistView()),
-          // WishlistTextBar(),
-        ])));
+    return MaterialApp(
+      home: Scaffold(
+          body: Center(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+            Expanded(flex: 1, child: HomeAppBar()),
+            Expanded(
+                flex: 8,
+                child: wishList.isEmpty
+                    ? Center(child: Text('Add Items to Your Wishlist!'))
+                    : WishlistView()),
+            WishlistTextBar(),
+          ]))),
+    );
   }
 }

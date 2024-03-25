@@ -26,16 +26,16 @@ class WishlistTextBar extends ConsumerWidget {
   //   });
   // }
 
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    nameController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   // Clean up the controller when the widget is disposed.
+  //   nameController.dispose();
+  //   super.dispose();
+  // }
 
-  void clearText() {
-    nameController.clear();
-  }
+  // void clearText() {
+  //   nameController.clear();
+  // }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -76,8 +76,11 @@ class WishlistTextBar extends ConsumerWidget {
               );
             } else {
               // addItemToList();
-              ref.read(wishesProvider.notifier).addWish(nameController.text);
-              clearText();
+              Wish newWish = Wish(description: nameController.text, id: '0');
+              // final Wish newWish{Wish(description: nameController.text)};
+              // final Wish newWish = Wish.copyWith(description: nameController.text);
+              ref.read(wishesProvider.notifier).addWish(newWish);
+              // clearText();
             }
           },
         ),
