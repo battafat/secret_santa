@@ -25,6 +25,21 @@ class MyApp extends ConsumerWidget {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     
     return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme(
+          brightness: Brightness.dark, 
+          primary: Colors.green, 
+          onPrimary: Colors.white, 
+          secondary: Colors.grey, 
+          onSecondary: Colors.black, 
+          error: Colors.red, 
+          onError: Colors.black, 
+          background: Colors.black, 
+          onBackground: Colors.white, 
+          surface: Colors.blue, 
+          onSurface: Colors.purple),
+      ),
       home: Scaffold(
           body: Center(
               child: Column(
