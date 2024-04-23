@@ -54,21 +54,10 @@ class WishesNotifier extends Notifier<List<Wish>> {
     ];
   }
 
-  // Let's mark a wish as completed
-//   void toggle(String wishId) {
-//     state = [
-//       for (final wish in state)
-//         // we're marking only the matching wish as completed
-//         if (wish.id == wishId)
-//           // Once more, since our state is immutable, we need to make a copy
-//           // of the wish. We're using our `copyWith` method implemented before
-//           // to help with that.
-//           wish.copyWith(completed: !wish.completed)
-//         else
-//           // other wishes are not modified
-//           wish,
-//     ];
-//   }
+  assignWishID(){
+    final wishID = state.length + 1;
+    return wishID;
+  }
 }
 
 // Finally, we are using NotifierProvider to allow the UI to interact with

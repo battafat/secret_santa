@@ -75,12 +75,15 @@ class WishlistTextBar extends ConsumerWidget {
                 content: const Text('Add'),
               );
             } else {
-              // addItemToList();
-              Wish newWish = Wish(description: nameController.text, id: '0');
-              // final Wish newWish{Wish(description: nameController.text)};
-              // final Wish newWish = Wish.copyWith(description: nameController.text);
+              
+              final id = ref.read(wishesProvider.notifier).assignWishID();
+              print(id);
+              Wish newWish = Wish(description: nameController.text, id: id.toString());
+            //  Maybe should change "read" to watch?
+            // addItemToList();
               ref.read(wishesProvider.notifier).addWish(newWish);
               // clearText();
+
             }
           },
         ),

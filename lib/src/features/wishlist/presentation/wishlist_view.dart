@@ -43,10 +43,10 @@ class WishlistView extends ConsumerWidget{
         );
       },
       onReorder: (int oldIndex, int newIndex) {
+        
         // setState(() {
         //   if (oldIndex < newIndex) {
         //     newIndex -= 1;
-        //     // what does newIndex start at?
         //   }
         //   final String item = wishList.removeAt(oldIndex);
         //   wishList.insert(newIndex, item);
