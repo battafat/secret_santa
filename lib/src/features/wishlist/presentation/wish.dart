@@ -18,7 +18,7 @@ class Wish {
   // Wish with slightly different content.
   Wish copyWith({String? description}) {
     return Wish(
-      id: id ?? this.id,
+      id: id,
       description: description ?? this.description,
       // completed: completed ?? this.completed,
     );
