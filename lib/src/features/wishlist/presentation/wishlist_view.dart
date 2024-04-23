@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:secret_santa/src/features/participants/data/fake_participants_repository.dart';
 import 'package:secret_santa/src/features/participants/domain/participant.dart';
-import 'package:secret_santa/src/features/wishlist/presentation/wish.dart';
+import 'package:secret_santa/src/features/wishlist/domain/wish.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/wishlist_text_bar.dart.dart';
 
 
@@ -15,11 +15,11 @@ class WishlistView extends ConsumerWidget{
   Widget build(BuildContext context, WidgetRef ref) {
    
     List<Wish> wishList = ref.watch(wishesProvider);
-  
 
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
     final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
+
     return ReorderableListView.builder(
       reverse: true,
       padding: const EdgeInsets.symmetric(horizontal: 40),
