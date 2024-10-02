@@ -25,7 +25,12 @@ class HomeAppBar extends ConsumerWidget implements PreferredSizeWidget {
             title: ElevatedButton(
               onPressed: null,
               child: Text(
-              participantsList[index].name),
+              participantsList[index].name,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold
+              ),
+              ),
             )),
         );
         }

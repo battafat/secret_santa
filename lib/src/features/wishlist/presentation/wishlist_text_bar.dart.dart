@@ -56,12 +56,14 @@ class WishlistTextBar extends ConsumerWidget {
                 floatingLabelAlignment: FloatingLabelAlignment.center,
                 border: OutlineInputBorder(),
                 hintText: 'Enter a gift',
+                //TODO: How do keep track of the author of the gift?
               ),
             ),
           ),
         ),
         TextButton(
           child: Text('ENTER'),
+          // TODO: Fix this button's functionality. Currently not working.
           onPressed: () {
             //can I use a ternary operator here?
             if (nameController.text.isEmpty) {
@@ -77,7 +79,7 @@ class WishlistTextBar extends ConsumerWidget {
             } else {
               final id = ref.read(wishesProvider.notifier).assignWishID();
               print(id);
-              Wish newWish = Wish(description: nameController.text, id: id.toString());
+              Wish newWish = Wish(description: nameController.text, id: id.toString(), author: participantsRepositoryProvider.name!);
             //  Maybe should change "read" to watch?
             // addItemToList();
               ref.read(wishesProvider.notifier).addWish(newWish);

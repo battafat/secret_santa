@@ -6,12 +6,14 @@ class Wish {
   const Wish({
     required this.id,
     required this.description,
+    required this.author,
     // required this.completed,
   });
 
   // All properties should be `final` on our class.
   final String id;
   final String description;
+  final String author;
    
   // final bool completed;
 
@@ -21,6 +23,7 @@ class Wish {
     return Wish(
       id: id,
       description: description ?? this.description,
+      author: author,
       // completed: completed ?? this.completed,
     );
   }
