@@ -12,6 +12,7 @@ class Wish {
   // All properties should be `final` on our class.
   final String id;
   final String description;
+   
   // final bool completed;
 
   // Since Wish is immutable, we implement a method that allows cloning the

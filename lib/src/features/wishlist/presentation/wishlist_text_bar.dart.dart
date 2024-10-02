@@ -75,7 +75,6 @@ class WishlistTextBar extends ConsumerWidget {
                 content: const Text('Add'),
               );
             } else {
-              
               final id = ref.read(wishesProvider.notifier).assignWishID();
               print(id);
               Wish newWish = Wish(description: nameController.text, id: id.toString());
