@@ -5,37 +5,6 @@ import 'package:secret_santa/src/features/wishlist/domain/wish.dart';
 
 class WishlistTextBar extends ConsumerWidget {
   const WishlistTextBar({super.key});
-  // List<String> _unmodifiableWishList =
-  //     FakeParticipantsRepository.instance.getWishesList('2');
-  // List<String> get wishList => _unmodifiableWishList.toList();
- 
-
-  
-
-  // void addItemToList() {
-  //   setState(() {
-  //     wishList.insert(0, nameController.text);
-  //   });
-  // }
-
-  // void deleteItemFromList(int index) {
-  //   setState(() {
-  //     if (wishList.isNotEmpty) {
-  //       wishList.removeAt(index);
-  //     }
-  //   });
-  // }
-
-  // @override
-  // void dispose() {
-  //   // Clean up the controller when the widget is disposed.
-  //   nameController.dispose();
-  //   super.dispose();
-  // }
-
-  // void clearText() {
-  //   nameController.clear();
-  // }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
