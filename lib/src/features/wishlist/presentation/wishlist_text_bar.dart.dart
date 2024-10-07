@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:secret_santa/src/constants/test_participants.dart';
 import 'package:secret_santa/src/features/participants/data/fake_participants_repository.dart';
 import 'package:secret_santa/src/features/wishlist/domain/wish.dart';
 
@@ -48,7 +49,7 @@ class WishlistTextBar extends ConsumerWidget {
             } else {
               final id = ref.read(wishesProvider.notifier).assignWishID();
               print(id);
-              Wish newWish = Wish(description: nameController.text, id: id.toString(), author: !);
+              Wish newWish = Wish(description: nameController.text, id: id.toString(), author: kTestParticipants.first.name);
             //  Maybe should change "read" to watch?
             // addItemToList();
               ref.read(wishesProvider.notifier).addWish(newWish);
