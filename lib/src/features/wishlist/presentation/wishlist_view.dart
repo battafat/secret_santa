@@ -38,7 +38,7 @@ class WishlistView extends ConsumerWidget{
         );
       },
       onReorder: (int oldIndex, int newIndex) {
-        
+        // TODO: fix reorder bug (low priority)
         // setState(() {
         //   if (oldIndex < newIndex) {
         //     newIndex -= 1;
