@@ -65,7 +65,7 @@ class WishesNotifier extends Notifier<List<Wish>> {
 }
 
 // Finally, we are using NotifierProvider to allow the UI to interact with
-// our TodosNotifier class.
+// our WishesNotifier class.
 final wishesProvider = NotifierProvider<WishesNotifier, List<Wish>>(() {
   return WishesNotifier();
 });

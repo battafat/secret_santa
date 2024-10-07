@@ -48,11 +48,14 @@ class WishlistTextBar extends ConsumerWidget {
               );
             } else {
               final id = ref.read(wishesProvider.notifier).assignWishID();
-              print(id);
+              print("id: $id");
               Wish newWish = Wish(description: nameController.text, id: id.toString(), author: kTestParticipants.first.name);
-            //  Maybe should change "read" to watch?
-            // addItemToList();
+            
               ref.read(wishesProvider.notifier).addWish(newWish);
+              final wishes = ref.watch(wishesProvider);
+              for (Wish entry in wishes){
+                print(entry.description);
+              };
               // clearText();
 
             }
