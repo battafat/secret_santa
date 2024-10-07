@@ -21,9 +21,6 @@ class FakeParticipantsRepository {
     final Participant? participantWishes = getParticipant(id);
     return participantWishes!.wishes;
   }
-
-
-
 }
 
   final participantsRepositoryProvider = Provider<FakeParticipantsRepository>((ref) {
