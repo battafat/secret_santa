@@ -48,7 +48,7 @@ class WishlistTextBar extends ConsumerWidget {
             } else {
               final id = ref.read(wishesProvider.notifier).assignWishID();
               print(id);
-              Wish newWish = Wish(description: nameController.text, id: id.toString(), author: participantsRepositoryProvider.name!);
+              Wish newWish = Wish(description: nameController.text, id: id.toString(), author: !);
             //  Maybe should change "read" to watch?
             // addItemToList();
               ref.read(wishesProvider.notifier).addWish(newWish);

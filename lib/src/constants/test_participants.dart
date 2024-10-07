@@ -4,6 +4,13 @@ import "package:secret_santa/src/features/participants/domain/participant.dart";
 // Test participants to be used until a data source is implemented
 const kTestParticipants = [
   Participant(
+    id: '0',
+    imageUrl: 'temp',
+    name: 'default',
+    phoneNumber: '6758493000',
+    wishes: ['participant', 'navigation', 'still', 'unimplemented']
+    ),
+  Participant(
     id: '1',
     imageUrl: 'asd',
     name: 'dog',
@@ -24,7 +31,6 @@ const kTestParticipants = [
     phoneNumber: '3334445555',
     wishes: ['halter', 'curry comb', 'fly spray']
   ),
-
 ];
 
 
