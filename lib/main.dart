@@ -4,7 +4,11 @@ import 'package:secret_santa/src/features/wishlist/presentation/home_app_bar.dar
 import 'package:secret_santa/src/features/wishlist/domain/wish.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/wishlist_text_bar.dart.dart';
 import 'package:secret_santa/src/features/wishlist/presentation/wishlist_view.dart';
-
+//TODO: navigate between names of participants
+//TODO: keep track of person who input the wish
+//TODO: keep track of who is logged in to know who adds wish: userID?
+//TODO: make sure each wish has the author and the intended recipient
+//TODO: keep the wishes that each user makes for themself in a separate list? Or just check the author
 void main() {
   runApp(ProviderScope(child: MyApp()));
 }

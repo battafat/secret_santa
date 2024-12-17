@@ -15,7 +15,8 @@ class WishlistView extends ConsumerWidget{
     final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
     final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
 
-    return ReorderableListView.builder(
+    return ListView.builder(
+      //TODO: make a regular list view, not reorderable
       reverse: true,
       padding: const EdgeInsets.symmetric(horizontal: 40),
       itemCount: wishList.length,
@@ -33,19 +34,10 @@ class WishlistView extends ConsumerWidget{
             icon: const Icon(Icons.delete),
             onPressed: () {
               WishesNotifier().removeWish(wishList[index].id);
+              print("wishList[index].id ${wishList[index].id}");
             },
           ),
         );
-      },
-      onReorder: (int oldIndex, int newIndex) {
-        // TODO: fix reorder bug (low priority)
-        // setState(() {
-        //   if (oldIndex < newIndex) {
-        //     newIndex -= 1;
-        //   }
-        //   final String item = wishList.removeAt(oldIndex);
-        //   wishList.insert(newIndex, item);
-        // });
       },
     );
   }
