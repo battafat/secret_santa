@@ -49,7 +49,7 @@ class WishlistTextBar extends ConsumerWidget {
             } else {
               final id = ref.read(wishesProvider.notifier).assignWishID();
               print("id: $id");
-              Wish newWish = Wish(description: nameController.text, id: id.toString(), author: kTestParticipants.first.name);
+              Wish newWish = Wish(description: nameController.text, id: id, author: kTestParticipants.first.name);
             
               ref.read(wishesProvider.notifier).addWish(newWish);
               final wishes = ref.watch(wishesProvider);

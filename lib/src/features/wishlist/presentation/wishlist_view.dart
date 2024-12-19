@@ -16,7 +16,6 @@ class WishlistView extends ConsumerWidget{
     final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
 
     return ListView.builder(
-      //TODO: make a regular list view, not reorderable
       reverse: true,
       padding: const EdgeInsets.symmetric(horizontal: 40),
       itemCount: wishList.length,

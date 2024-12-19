@@ -11,7 +11,7 @@ class Wish {
   });
 
   // All properties should be `final` on our class.
-  final String id;
+  final int id;
   final String description;
   final String author;
    
@@ -58,7 +58,7 @@ class WishesNotifier extends Notifier<List<Wish>> {
     ];
   }
 
-  assignWishID(){
+  int assignWishID(){
     final wishID = state.length + 1;
     return wishID;
   }
