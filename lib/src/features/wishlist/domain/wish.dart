@@ -49,7 +49,7 @@ class WishesNotifier extends Notifier<List<Wish>> {
   }
 
   // Let's allow removing wishes
-  void removeWish(String wishId) {
+  void removeWish(int wishId) {
     // Again, our state is immutable. So we're making a new list instead of
     // changing the existing list.
     state = [
