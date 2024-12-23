@@ -33,14 +33,11 @@ class WishlistTextBar extends ConsumerWidget {
         ),
         TextButton(
           child: Text('ENTER'),
-          // TODO: Fix this button's functionality. Currently not working.
           onPressed: () {
             //can I use a ternary operator here?
             if (nameController.text.isEmpty) {
               //TODO: refactor with ternary operator
-              //TODO: investigate: The return type 'AlertDialog' isn't a 'void', as required by the closure's context.
               AlertDialog(
-                // TODO: add gift icon
                 // TODO: refactor so that text pops up
                 // TODO: add case where user only types spaces
                 title: const Text('type a gift idea first'),
@@ -56,7 +53,6 @@ class WishlistTextBar extends ConsumerWidget {
               for (Wish entry in wishes){
                 print(entry.description);
               };
-              // clearText();
 
             }
           },
