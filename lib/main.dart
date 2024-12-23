@@ -39,11 +39,12 @@ class MyApp extends ConsumerWidget {
           onSurface: Colors.purple),
       ),
       home: Scaffold(
+          appBar: HomeAppBar(),
           body: Center(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-            Expanded(flex: 1, child: HomeAppBar()),
+            // Expanded(flex: 1, child: HomeAppBar()),
             Expanded(
                 flex: 8,
                 child: wishList.isEmpty
